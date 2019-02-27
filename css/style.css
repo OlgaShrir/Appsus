@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+.nav-bar{
+    background-color: rgb(255, 253, 145);
+    padding: 20px 30px;
+    font-size: 2em;
+}
+
+/* helpers */
+.flex{
+    display: flex;
+}
+.direction-column{
+    flex-direction: column;
+}
+.justify-center{
+    justify-content: center;
+}
+.justify-between{
+    justify-content: space-between;
+}
+.align-center{
+    align-items: center;
+}
+

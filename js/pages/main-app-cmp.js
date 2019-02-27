@@ -10,6 +10,7 @@ export default {
     template: `
        <section class="main-app">
             <h1>Main App</h1>
+           
 
 
             <!-- <email-main></email-main>
