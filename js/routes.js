@@ -11,3 +11,12 @@ const routes = [
 ]
 
 export default routes;
+
+
+
+// export default [
+//     { path: '/', component: mainApp },
+//     { path: '/email', component: emailMain },
+//     { path: '/keep', component: keepMain },
+    
+// ]
