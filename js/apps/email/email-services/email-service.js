@@ -3,7 +3,7 @@ import utilService from '../../../services/utils-service.js'
 
 var gNextId = 1;
 var gEmails;
-const EMAILS_KEY ='emails';
+const EMAILS_KEY = 'emails';
 
 createEmails();
 
@@ -27,15 +27,15 @@ function createEmails() {
 
 
 function createEmail(subject, body, from) {
-  return {
-      id: gNextId++,
-      subject: subject,
-      body: body,
-      isRead: false,
-      sentAt:new Date().toLocaleString(),
-      from: from,
-      isStared: false 
-  }
+	return {
+		id: gNextId++,
+		subject: subject,
+		body: body,
+		isRead: false,
+		sentAt: new Date().toLocaleString(),
+		from: from,
+		isStared: false
+	}
 }
 
 function getEmailsForDisplay() {
@@ -47,9 +47,9 @@ function getEmailsForDisplay() {
   // })
 }
 
-function allEmails(){
-  console.log(gEmails);
-  return gEmails;
+function allEmails() {
+	console.log(gEmails);
+	return gEmails;
 }
 
 function getEmailById(id) {
@@ -63,6 +63,6 @@ function getEmailById(id) {
 //console.log(gEmails);
 
 export default {
-  getEmailsForDisplay,
-  getEmailById
+	getEmailsForDisplay,
+	getEmailById
 }
