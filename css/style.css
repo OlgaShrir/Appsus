@@ -36,6 +36,9 @@ input{
     border: 1px solid #a9a9a9;
     padding: 10px;
     color: #767676;
+}
+
+.fa-window-close{
 
 }
 
@@ -179,6 +182,9 @@ ul{
 }
 .justify-center{
     justify-content: center;
+}
+.justify-end{
+    justify-content: flex-end;
 }
 .justify-between{
     justify-content: space-between;

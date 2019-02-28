@@ -10,6 +10,7 @@ export default {
     template: `
        <section class="main-keep">
 
+       <!-- input forms -->
            <form class="keep-form flex column align-center">
                <input v-if="isAddingNote" v-model="newNote.noteTitle" 
                         class="input-add-note-title" type="text" placeholder="Title" style="" />
@@ -28,16 +29,19 @@ export default {
                    <button @click="onAddNewNote()">Add Note</button>
                    <button @click="emptyNewNote()">Delete Note</button>
                </div>
-
             </form>
 
+            <!-- edit forms -->
+            <div class="open-note flex column" v-if="isNoteOpen">
+                <i class="far fa-window-close" @click="isNoteOpen=!isNoteOpen"></i>
+                <open-note class="open-note-cmp" :note="currNote"></open-note>
+                <button @click=saveEdit(currNote) class="save-note">Save</button>
+            </div>
 
-            <open-note class="open-note" v-if="isNoteOpen" :note="currNote"></open-note>
-
-
+            <!-- render notes -->
             <div class="notes-grid">
                 <note-preview v-for="note in notes" :key="note.id" 
-                @delete="deleteNote(note)" :note="note" @click.native="updateCurr(note)" >
+                @delete="deleteNote(note)" :note="note" @click.native="updateCurr(note)">
                 </note-preview>
                
             </div>
@@ -52,6 +56,7 @@ export default {
         return {
             isAddingNote: false,
             newNote: {
+                id: null,
                 note: '',
                 noteTitle: '',
                 isPinned: false,
@@ -61,25 +66,33 @@ export default {
             }, 
             notes: null,
             isNoteOpen: false,
-            currNote:null
-            
+            currNote: null,
+            editedNote: null
         } 
     },
     methods:{
         updateCurr(note){
+            
             this.currNote = note;
             this.isNoteOpen = true;
             // console.log('updateCurr',this.currNote)
         },
         onAddNewNote(){
             if(!this.newNote.note && !this.newNote.noteTitle) return
+            
+            // console.log('this.newNote',this.newNote)
+            // // this.newNote.id = keepService.updateId() // Cannot set property 'id' of null"
             keepService.addNewNote(this.newNote)
             .then (notes => this.notes = notes)
             this.isAddingNote = false
+            
+            // console.log(this.id)
+            // console.log(this.note)
             this.emptyNewNote()
         },
         emptyNewNote(){
                         this.newNote = {
+                            id: null,
                             note: '',
                             noteTitle: '',
                             isPinned: false,
@@ -92,12 +105,9 @@ export default {
         deleteNote(note){
             this.notes = keepService.deleteNote(note);
         },
-        openNote(){
-            // console.log('I\'m in main')
-            // console.log('this.currNote:', this.currNote)
-
-            // this.isNoteOpen = !this.isNoteOpen
-            // this.isNoteOpen = true
+        saveEdit(currNote){
+            // console.log(currNote)
+            keepService.saveEdit(currNote)
         }
     },
     created(){
