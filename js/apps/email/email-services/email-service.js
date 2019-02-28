@@ -13,17 +13,18 @@ function createEmails() {
     if (!emails || emails.length === 0) {
       emails = [
         createEmail('welcome', 'hello puki great to meet you', 'boss@gmail.com'),
-        createEmail('have a nice day', 'hello shuki great to meet you', 'bossit@gmail.com'),
+        createEmail('have a nice day', 'welcome shuki great to meet you', 'bossit@gmail.com'),
         createEmail('mission accomplished', 'hello muki great to meet you', 'robot@gmail.com')
       ];
-    // } else {
+     } 
+    //else {
     //     gNextId = findNextId(emails);
     // }
     gEmails = emails;
    // console.log('natalia',gEmails);
     utilService.saveToStorage(EMAILS_KEY, gEmails);
 }
-}
+
 
 function createEmail(subject, body, from) {
   return {
@@ -39,7 +40,7 @@ function createEmail(subject, body, from) {
 
 function getEmailsForDisplay() {
   console.log(gEmails);
-  return gEmails;
+  return Promise.resolve(gEmails);
   // if (gMemesFilterBy === 'All') return gImages;
   // return gImages.filter(function (meme) {
   //     if (meme.keywords.find(function (word) { return word === gMemesFilterBy })) return meme;
@@ -52,10 +53,11 @@ function allEmails(){
 }
 
 function getEmailById(id) {
+  //debugger
   var email = gEmails.find(function (email) {
-      return email.id === id;
+      return email.id == id;
   });
-  return email;
+  return Promise.resolve(email);
 }
 
 //console.log(gEmails);

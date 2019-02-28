@@ -35,6 +35,66 @@ body {
     font-weight: 600;
 }
 
+ul{
+    list-style-type: none;
+}
+
+.right, .left{
+    border: 1px solid black;
+}
+
+.left{
+    padding: 10px;
+}
+
+.compose{
+    margin: 10px;
+}
+
+.left > div {
+    margin: 10px auto;
+}
+
+.search-mail{
+    /* margin: 20px; */
+    padding: 5px;
+}
+.search-img{
+    background: url('../img/serch\ icon.png');
+    background-size: 100%;
+    width: 30px;
+    height: 30px;
+}
+.search-area{
+    padding-left: 40px;
+}
+
+.compose-email{
+    position: fixed;
+    height: 100%;
+    z-index: 3;
+    background: white;
+    color: black;
+    width: 40vw;
+    top: -150vw;
+    left:15vw;
+    opacity: 1;
+    border: 2px solid gray;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.compose-email-open{
+    top:100px;
+}
+
+
+
+
+
 
 /* helpers */
 .flex{
@@ -52,4 +112,5 @@ body {
 .align-center{
     align-items: center;
 }
+
 

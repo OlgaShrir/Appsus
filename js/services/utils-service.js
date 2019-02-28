@@ -26,7 +26,7 @@ function getRandomColor() {
     var str = JSON.stringify(value);
     localStorage.setItem(key, str);
  }
- 
+
  function loadFromStorage(key) {
     var str = localStorage.getItem(key)
     return JSON.parse(str)
