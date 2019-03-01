@@ -13,18 +13,17 @@ export default {
     `,
     data() {
         return {
-            id: null
+            id: null,
+            newValue: null
         }
     },
     created() {
         this.id = this.note.id
-        console.log('this.note.id:', this.note.id)
     },
     methods: {
         
     },
-    computed: {
-
+    computed: {  
         
     }
 }

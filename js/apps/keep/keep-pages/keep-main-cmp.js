@@ -12,13 +12,13 @@ export default {
 
        <!-- input forms -->
            <form class="keep-form flex column align-center">
-               <input v-if="isAddingNote" v-model="newNote.noteTitle" 
+               <input v-show="isAddingNote" v-model="newNote.noteTitle" 
                         class="input-add-note-title" type="text" placeholder="Title" style="" />
-               <input @mouseup="isAddingNote=true" v-model="newNote.note" 
+               <input @mouseup="isAddingNote=true" @click="setFocus()" ref="noteinput" v-model="newNote.note" 
                         class="input-add-note" type="text" placeholder="What's on your mind" style="" />
                <div class="edit-new-note flex" v-if="isAddingNote">
                     <!-- TODO: colors, type, img, todos -->
-                    <i class="fas fa-align-justify"></i>
+                    <i class="fas fa-align-left"></i>   
                     <i class="fas fa-palette"></i>
                     <i class="far fa-images"></i>
                     <i class="fas fa-list-ul"></i>
@@ -31,19 +31,19 @@ export default {
                </div>
             </form>
 
-            <!-- edit forms -->
+            <!-- preview note for edit or full view -->
+            <!-- TODO: new component -->
             <div class="open-note flex column" v-if="isNoteOpen">
                 <i class="far fa-window-close" @click="isNoteOpen=!isNoteOpen"></i>
                 <open-note class="open-note-cmp" :note="currNote"></open-note>
-                <button @click=saveEdit(currNote) class="save-note">Save</button>
+                <!-- <button @click=onSaveEdit(currNote) class="save-note">Save</button> -->
             </div>
 
             <!-- render notes -->
-            <div class="notes-grid">
-                <note-preview v-for="note in notes" :key="note.id" 
-                @delete="deleteNote(note)" :note="note" @click.native="updateCurr(note)">
-                </note-preview>
-               
+            <div class="notes-grid flex column-reverse" >
+                <note-preview v-for="note in notes"  :key="note.id" 
+                    @delete="onDeleteNote(note)" :note="note" @click.native="updateCurr(note)">
+                </note-preview>              
             </div>
             <div>
                
@@ -71,11 +71,9 @@ export default {
         } 
     },
     methods:{
-        updateCurr(note){
-            
+        updateCurr(note){     
             this.currNote = note;
             this.isNoteOpen = true;
-            // console.log('updateCurr',this.currNote)
         },
         onAddNewNote(){
             if(!this.newNote.note && !this.newNote.noteTitle) return
@@ -102,12 +100,15 @@ export default {
                         }
                         this.isAddingNote = false
         },
-        deleteNote(note){
+        onDeleteNote(note){
             this.notes = keepService.deleteNote(note);
         },
-        saveEdit(currNote){
+        onSaveEdit(currNote){
             // console.log(currNote)
             keepService.saveEdit(currNote)
+        },
+        setFocus(){
+            this.$refs.noteinput.focus();
         }
     },
     created(){

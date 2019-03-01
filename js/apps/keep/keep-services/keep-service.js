@@ -53,15 +53,22 @@ function deleteNote(note){
 
 function saveEdit(currNote){
     var id = currNote.id
-    console.log('id',currNote.id)
+    console.log('currNote',currNote)
     gNotes = getStoragedNotes();
     console.log('gNotes',gNotes)
     // ID!!!!!!!!!!
     gNotes.forEach(note => {
         if(note.id === id){
-            
+            console.log('Match! id=', id)
+            note.note= currNote.note
+            note.noteTitle= currNote.noteTitle
+            note.isPinned= currNote.isPinned
+            note.backGroundColor= currNote.backGroundColor
+            note.type= currNote.type  
         }
     })
+    console.log('gNotes',gNotes)
+
 }
 
 function updateId(){
