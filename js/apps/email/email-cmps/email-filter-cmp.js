@@ -1,4 +1,4 @@
-import {eventBus, EVENT_FEEDBACK} from '../../../services/eventbus-service.js';
+import {eventBus, EVENT_INBOX} from '../../../services/eventbus-service.js';
 
 export default {
   template: `
@@ -21,8 +21,7 @@ export default {
       }
   },
   created() {
-    eventBus.$on(EVENT_FEEDBACK, temp =>{
-        console.log('Got a Puk', EVENT_FEEDBACK);
+    eventBus.$on(EVENT_INBOX, temp =>{
         this.filterBy.subject = '';
         this.emitFilter()
     })

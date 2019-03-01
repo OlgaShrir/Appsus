@@ -1,7 +1,9 @@
 import emailService from '../email-services/email-service.js';
 import emailList from '../email-cmps/email-list-cmp.js';
 import emailFilter from '../email-cmps/email-filter-cmp.js';
-import {eventBus, EVENT_FEEDBACK} from '../../../services/eventbus-service.js';
+import {eventBus, EVENT_INBOX,READ_EMAILS} from '../../../services/eventbus-service.js';
+import composeEmail from '../email-cmps/compose-email-cmp.js';
+
 
 export default {
     // <button v-on:click="toggleDetails">Toggle Details</button>
@@ -32,7 +34,8 @@ export default {
            </div> 
                 <email-list v-bind:emails="emailsToShow" ></email-list>
             </div>
-            <div v-if="showComposeEmail" class="compose-email compose-email-open">dssd</div> 
+            <compose-email  v-if="showComposeEmail" class="compose-email-open compose-email"
+                @closeComposeEmail="toggleShowEmail"></compose-email> 
        
    </section>
     `,
@@ -58,8 +61,8 @@ export default {
         },
         filterNull(){
             var temp = ''
-            console.log('was clicked')
-            eventBus.$emit(EVENT_FEEDBACK,temp)
+            //console.log('was clicked')
+            eventBus.$emit(EVENT_INBOX,temp)
         },
         toggleShowEmail(ev) {
          console.log('TOGGLE EV', ev);
@@ -69,12 +72,17 @@ export default {
 
     created() {
         emailService.getEmailsForDisplay()
+        //console.log('test', emailService.getEmailsForDisplay())
             .then(emails => this.emails = emails)
+    eventBus.$on(READ_EMAILS, temp=>{
+        console.log ('check', temp)
+    } )
     },
 
     components: {
         emailList,
-        emailFilter
+        emailFilter,
+        composeEmail
     },
 
     computed: {

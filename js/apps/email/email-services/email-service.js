@@ -9,42 +9,49 @@ createEmails();
 
 
 function createEmails() {
-  var emails = utilService.loadFromStorage(EMAILS_KEY);
-    if (!emails || emails.length === 0) {
-      emails = [
-        createEmail('welcome', 'hello puki great to meet you', 'boss@gmail.com'),
-        createEmail('have a nice day', 'welcome shuki great to meet you', 'bossit@gmail.com'),
-        createEmail('mission accomplished', 'hello muki great to meet you', 'robot@gmail.com')
-      ];
-     } 
-    //else {
-    //     gNextId = findNextId(emails);
-    // }
-    gEmails = emails;
-   // console.log('natalia',gEmails);
-    utilService.saveToStorage(EMAILS_KEY, gEmails);
+	var emails = utilService.loadFromStorage(EMAILS_KEY);
+	if (!emails || emails.length === 0) {
+		emails = [
+			createEmail('welcome', 'hello puki great to meet you', 'boss@gmail.com'),
+			createEmail('have a nice day', 'welcome shuki great to meet you', 'bossit@gmail.com'),
+			createEmail('mission accomplished', 'hello muki great to meet you', 'robot@gmail.com')
+		];
+	}
+	else {
+	    gNextId = findNextId(emails);
+	}
+	gEmails = emails;
+	utilService.saveToStorage(EMAILS_KEY, gEmails);
 }
 
+function findNextId(emails) {
+	var max = 0;
+	emails.forEach(function (email) {
+			if (email.id > max) max = email.id;
+	})
+	return max + 1;
+}
 
-function createEmail(subject, body, from) {
+function createEmail(subject, body, from, to = null) {
 	return {
 		id: gNextId++,
 		subject: subject,
 		body: body,
 		isRead: false,
-		sentAt: new Date().toLocaleString(),
+		sentAt: new Date(),//.toLocaleDateString(),
 		from: from,
+		to: to,
 		isStared: false
 	}
 }
 
 function getEmailsForDisplay() {
-  console.log(gEmails);
-  return Promise.resolve(gEmails);
-  // if (gMemesFilterBy === 'All') return gImages;
-  // return gImages.filter(function (meme) {
-  //     if (meme.keywords.find(function (word) { return word === gMemesFilterBy })) return meme;
-  // })
+	console.log(gEmails);
+	return Promise.resolve(gEmails);
+	// if (gMemesFilterBy === 'All') return gImages;
+	// return gImages.filter(function (meme) {
+	//     if (meme.keywords.find(function (word) { return word === gMemesFilterBy })) return meme;
+	// })
 }
 
 function allEmails() {
@@ -53,16 +60,20 @@ function allEmails() {
 }
 
 function getEmailById(id) {
-  //debugger
-  var email = gEmails.find(function (email) {
-      return email.id == id;
-  });
-  return Promise.resolve(email);
+	var email = gEmails.find(function (email) {
+		return email.id == id;
+	});
+	return Promise.resolve(email);
 }
 
-//console.log(gEmails);
+function saveNewEmail(subject, body, from, to) {
+	var newEmail = createEmail(subject, body, from, to);
+	gEmails.push(newEmail);
+	utilService.saveToStorage(EMAILS_KEY, gEmails);
+}
 
 export default {
 	getEmailsForDisplay,
-	getEmailById
+	getEmailById,
+	saveNewEmail
 }

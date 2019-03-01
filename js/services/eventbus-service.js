@@ -1,2 +1,4 @@
 export const eventBus = new Vue();
-export const EVENT_FEEDBACK = 'feedback-sent';
+//emails
+export const EVENT_INBOX = 'inbox-clicked';
+export const READ_EMAILS='as-the-email-opened'
