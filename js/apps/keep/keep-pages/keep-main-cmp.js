@@ -40,8 +40,8 @@ export default {
                     <i class="fas fa-thumbtack" @click="onPinNote()"></i>      <!--  pinned note -->
                     <i class="fas fa-palette" @click="onChangeColor()"></i>        <!--  input color -->
                     <i class="far fa-images" @click="onAddImage()"></i>         <!--  input image -->
-                    <i class="fas fa-list-ul"></i>        <!--  input todo -->
-                    <i class="far fa-file-audio"></i>     <!--  input audio -->
+                    <!-- <i class="fas fa-list-ul"></i>        -->
+                    <!-- <i class="far fa-file-audio"></i>     -->
                     <i class="fas fa-link" @click="onAddLink()"></i>
                 </div>
 
@@ -50,7 +50,7 @@ export default {
 
                 <div class="save-note">
                    <button @click="onAddNewNote()">Add Note</button>
-                   <button @click="emptyNewNote()">Delete Note</button>
+                   <button @click="emptyNewNote()">Cancel</button>
                 </div>
             </form>
       
@@ -58,8 +58,7 @@ export default {
             <!-- preview note for edit or full view -->
             <div class="open-note flex column" v-if="isNoteOpen">
                 <i class="far fa-window-close" @click="isNoteOpen=!isNoteOpen"></i>
-                <open-note class="open-note-cmp" :note="currNote"></open-note>
-                <!-- <button @click=onSaveEdit(currNote) class="save-note">Save</button> -->
+                <open-note class="open-note-cmp" @editedNotes="notesToDisplay" :note="currNote"></open-note>
             </div>
 
 
@@ -96,7 +95,6 @@ export default {
        </section>
     `,
 
-    // @open="openNote()"
     data() {
         return {
             newNote: {
@@ -121,6 +119,10 @@ export default {
         }
     },
     methods: {
+        notesToDisplay(){
+            this.notes = keepService.getStoragedNotes()
+            this.isNoteOpen = !this.isNoteOpen
+        },
         updateCurr(note) {
             this.currNote = note;
             this.isNoteOpen = true;
@@ -131,7 +133,6 @@ export default {
                 !this.newNote.link &&
                 !this.newNote.image 
                 ) return
-            // console.log('this.newNote',this.newNote)
             keepService.addNewNote(this.newNote)
                 .then(notes => this.notes = notes)
             this.isAddingNote = false
@@ -158,7 +159,6 @@ export default {
             this.notes = keepService.deleteNote(note);
         },
         onSaveEdit(currNote) {
-            // console.log(currNote)
             keepService.saveEdit(currNote)
         },
         setFocus() {
@@ -169,7 +169,6 @@ export default {
         },
         getColor(color) {
             this.newNote.color = color
-            console.log(this.newNote.color)
         },
         onPinNote(){
             this.newNote.isPinned = true
@@ -179,13 +178,14 @@ export default {
         },
         onAddImage(){
             this.isAddingImage = true
-            // this.newNote.image = !this.newNote.image
         }
     },
     created() {
         this.notes = keepService.getStoragedNotes();
-        // console.log(this.notes)
     },
+    computed:{
+       
+    }
 }
 
 

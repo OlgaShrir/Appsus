@@ -53,29 +53,25 @@ function deleteNote(note){
 
 function saveEdit(currNote){
     var id = currNote.id
-    console.log('currNote',currNote)
     gNotes = getStoragedNotes();
-    console.log('gNotes',gNotes)
-    // ID!!!!!!!!!!
-    gNotes.forEach(note => {
-        if(note.id === id){
-            console.log('Match! id=', id)
-            note.note= currNote.note
-            note.noteTitle= currNote.noteTitle
-            note.isPinned= currNote.isPinned
-            note.backGroundColor= currNote.backGroundColor
-            note.type= currNote.type  
-        }
-    })
-    console.log('gNotes',gNotes)
+    var idx = gNotes.findIndex(note =>note.id === currNote.id)
+    gNotes[idx] = {...currNote}
+    utilService.saveToStorage(NOTES_KEY, gNotes);
+    return gNotes
+}
+    
+    
 
+
+function temp(){
+    var idx = gNotes.findIndex(note =>note.id === currNote.id)
+    gNotes[idx] = {...currNote}
 }
 
 function updateId(){
     gId = utilService.loadFromStorage(ID_KEY)
     if( !gId) utilService.saveToStorage(ID_KEY,0)
     gId++
-    // console.log('gId',gId)
     utilService.saveToStorage(ID_KEY,gId)
     return gId;
 }
