@@ -9,6 +9,7 @@ export default {
 
     template: `
         <section class="main-email flex wrapper ">
+            
             <div class="left flex column align-center">
                 <button @click="toggleShowEmail" class="compose">+ compose</button>
                 <div  class="cursor" @click="filterNull">
@@ -31,16 +32,15 @@ export default {
             </div>
             <router-link  exact to="/email/email-list"></router-link> 
             <router-view 
-            :filtered="emailsToShow"
-            @deleted="getEmails"
-            
-            ></router-view> 
+                :filtered="emailsToShow"
+                @deleted="getEmails">
+            </router-view> 
             </div>  
             
             <compose-email  v-if="showComposeEmail" class="compose-email-open compose-email"
                 @closeComposeEmail="toggleShowEmail"></compose-email> 
           
-   </section>
+        </section>
     `,
     data() {
         return {
