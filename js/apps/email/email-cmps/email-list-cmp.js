@@ -7,20 +7,18 @@ export default {
     props:['filtered'],
     template: `
         <section class="email-list">
-        
-            <ul>
-                    <li v-for="(currEmail, idx) in filtered">
-                             
-                        <email-preview 
+            <ul v-for="(currEmail, idx) in filtered">
+                <!-- <li v-for="(currEmail, idx) in filtered">                           -->
+                    <email-preview 
                         @readEmail="readEmail"
-                          @deleteEmail="deleteEmail"
-                          @markAsUnread="markAsUnread"   
+                        @deleteEmail="deleteEmail"
+                        @markAsUnread="markAsUnread"   
                         :email="currEmail" 
                         :idx="idx"
                         @click.native="openEmail(currEmail.id)"  >
-                        </email-preview>
-                        <router-view ></router-view>                
-                </li>
+                    </email-preview>
+                    <router-view ></router-view>                
+                <!-- </li> -->
                 
             </ul>
         </section>
