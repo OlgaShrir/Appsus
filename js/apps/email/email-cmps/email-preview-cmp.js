@@ -3,14 +3,12 @@
 export default {
     props: ['email', 'idx'],
     template: `
-       <li @click.stop.prevent="markAsRead(email)" class="email-preview flex align-center justify-between cursor" :class="[email.isRead ? 'background-dark' : 'background-light' ]">
-      
+       <li @click.stop.prevent="markAsRead(email)" class="email-preview flex align-center justify-between cursor" :class="[email.isRead ? 'background-dark' : 'background-light' ]">      
           <h3>{{email.from}}</h3>
           <div class="email-subj">{{email.subject}}</div>
           <div class="email-body">{{email.sentAt}} </div>
 
           <button class="delete-email fas fa-trash-alt" @click.stop.prevent="deleteEmail(email,idx)"> </button>
-
           <button class="mark-as-unread fas fa-envelope-square"  @click.stop.prevent="markAsUnread(email)"></button>
       </li>
   `,
@@ -25,7 +23,6 @@ export default {
         markAsUnread(email){
             this.$emit('markAsUnread', email)  
         }
-
     },
 
     computed: {
