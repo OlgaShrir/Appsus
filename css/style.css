@@ -36,16 +36,27 @@ input{
 }
 
 /* KEEP */
+.main-keep{		
+    width: 90%;		
+    margin: 0 auto;		
+    color: #4a4c50		
+}
+
 .keep-form{
     margin:  20px auto;
     max-width: 650px;
-    border: 1px solid #a9a9a9;
+    border: 1px solid #979797;
     border-radius: 4px;
 }
 
 .input-add-note, .input-add-note-title, .input-add-link, .input-add-image{
     padding: 10px;
     border: 0;
+}
+
+.pinned-other{		
+    font-weight: 800;		
+    margin-left: 10px;		
 }
 
 .color{
@@ -77,8 +88,13 @@ input{
     padding: 10px 0;
 }
 
-.far, .fas{
+.icon{
     margin: 0 10px;
+}
+
+.icon:hover{		
+    color: #7e99a5;		
+    transition: 0.3sec;		
 }
 
 .save-note button{
@@ -112,12 +128,17 @@ h2{
     margin: 0;
 }
     
-.note-preview{
-    border: 1px solid #dadce0;
+.keep-notes-preview{
+    border: 1px solid #7c808f;
     padding: 3px;
     margin: 5px auto;
-    color: #202124;
     border-radius: 4px;
+    width: 100%;
+}
+
+.keep-notes-preview:hover{
+    background-color: #7e99a5;
+    transition: 0.3s;
 }
 
 .fa-trash-alt{
@@ -133,8 +154,30 @@ h2{
     color: #767676;
 }
 
+.button-cancel, .button-add{
+    font-size: 1.2em;
+}
+
+
+/* Email */
 ul{
     list-style-type: none;
+    padding: 0;		
+    margin: 0 15px;		
+    border-radius: 5px;		
+}
+
+li{		
+    padding: 0 10px;		
+}		
+		
+li:hover{		
+    background-color: #7e99a5;		
+    transition: 0.3s;		
+    }		
+		
+.email-list{		
+    width: 100%;		
 }
 
 .right, .left{
@@ -144,10 +187,14 @@ ul{
 .left{
     padding: 0;
     width: 25%;
+    border-top-left-radius: 5px;		
+    border-bottom-left-radius: 5px;
 }
 
 .right{
     width:100%;
+    border-top-right-radius: 5px;		
+    border-bottom-right-radius: 5px;
 }
 
 .compose{
@@ -172,7 +219,7 @@ ul{
 
 .search-area{
     padding-left: 40px;
-    margin: 10px auto;
+    margin: 30px auto;
     /* width: 100%; */
 }
 
@@ -192,10 +239,10 @@ ul{
 }
 
 .delete-email{
-    /* width:5%; */
-    text-align:left;
-    
-
+    width: 5%;
+    text-align: center;
+    margin: 0;  
+    padding: 2px;
 }
 
 .mark-as-unred{

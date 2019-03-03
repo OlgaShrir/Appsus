@@ -14,9 +14,6 @@ export default {
             <h1 class="open-email-header">{{email.subject}}</h1>
             <div class="email-from"> {{email.from}}</div>
             <div class="email-body">{{email.body}}</div>
-            
-            
-            
         </section>
     `,
 
