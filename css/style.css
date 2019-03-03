@@ -137,8 +137,9 @@ h2{
     width: 100%;
 }
 
-.note-preview{
-    /* margin: 3px; */
+.keep-notes-preview:hover{
+    background-color: #7e99a5;
+    transition: 0.3s;
 }
 
 .fa-trash-alt{
@@ -152,6 +153,10 @@ h2{
 
 .note-txt{
     color: #767676;
+}
+
+.button-cancel, .button-add{
+    font-size: 1.2em;
 }
 
 

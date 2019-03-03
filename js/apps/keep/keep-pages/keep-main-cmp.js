@@ -47,8 +47,8 @@ export default {
                 </color-note>  
 
                 <div class="save-note">
-                   <button @click="onAddNewNote()">Add Note</button>
-                   <button @click="emptyNewNote()">Cancel</button>
+                   <button class="button-add" @click="onAddNewNote()">Add Note</button>
+                   <button class="button-cancel" @click="emptyNewNote()">Cancel</button>
                 </div>
             </form>
       
@@ -102,8 +102,6 @@ export default {
                 note: '',
                 noteTitle: '',
                 isPinned: false,
-                createTime: null,
-                type: null,   //note, video, audio, todo
                 color: null, 
                 link: null,
                 image: null
@@ -145,8 +143,6 @@ export default {
                 note: '',
                 noteTitle: '',
                 isPinned: false,
-                createTime: null,
-                type: null,    //note, video, audio, todo
                 color: null,
                 link: null,
                 image: null
