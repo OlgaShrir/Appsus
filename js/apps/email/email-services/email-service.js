@@ -13,8 +13,11 @@ function createEmails() {
 	if (!emails || emails.length === 0) {
 		emails = [
 			createEmail('welcome', 'hello puki great to meet you', 'boss@gmail.com'),
-			createEmail('have a nice day', 'welcome shuki great to meet you', 'bossit@gmail.com'),
-			createEmail('mission accomplished', 'hello muki great to meet you', 'robot@gmail.com')
+			createEmail('have a nice day', 'welcome shuki great to meet you', 'ronald@gmail.com'),
+			createEmail('mission accomplished', 'hello muki great to meet you', 'robot@gmail.com'),
+			createEmail('Marketing Analyst job ', 'Shares in mainland China saw solid gains on the day, with the Shanghai Composite surging 5.6% to hit an eight-month peak. Shares are now up just over 20% from a Jan. 3 low, meeting the technical definition of a bull market.', 'robot@gmail.com'),
+			createEmail('Top 5 Things to Know Today', 'U.S. President Donald Trump said on Sunday that he would delay an increase in tariffs on Chinese goods that had been scheduled for Friday, citing "substantial progress" in U.S.-China trade talks over the weekend.', 'robot@gmail.com'),
+			createEmail('Free API Key', 'Hi Here is your free API key:', 'robot@gmail.com')
 		];
 	}
 	else {

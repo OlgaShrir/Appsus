@@ -311,6 +311,7 @@ ul{
             .email-preview{
                 display:flex;
                 flex-direction: column;
+                align-items:left 
                            }
                .mobile-prev{
                    display:flex;
