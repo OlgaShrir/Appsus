@@ -172,7 +172,7 @@ ul{
 
 .search-area{
     padding-left: 40px;
-    margin: 30px auto;
+    margin: 10px auto;
     /* width: 100%; */
 }
 
@@ -243,6 +243,79 @@ ul{
 .background-dark{
     background-color: #c2d3da;
 }
+
+.mobile-menu-button {
+    display: none;
+    /* position: absolute;
+    left: 0;
+    top: 0; */
+    }
+@media (max-width: 600px) {
+    .nav-bar {
+        height: 80px;
+        top: 0;
+        position: flex;
+        align-items: center;
+         }
+         .mobile-menu-button {
+            display: block;
+            position: absolute;
+            right: 0;
+             }
+
+             .nav-list {
+                z-index: 1;
+                position: fixed;
+                right: 0; 
+                top: 80px; 
+                flex-direction: column;
+                background-color: #00293c;
+                opacity: 0.75;
+                height: auto;
+                /* width: 40vw ; */
+                border-left: 1px solid rgba(0, 0, 0, 0.2);
+                transform: translate(100%, 0);
+                transition: transform .3s;
+            }
+        
+             .nav-list-open{   
+                transform: translate(0, 0);
+            }
+        
+            .nav-list a {
+                width: 130px;
+                height: 130px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .left{
+                z-index: 1;
+                position: fixed;
+                right: 0; 
+                top: 80px; 
+                flex-direction: column;
+                background-color: #00293c;
+                opacity: 0.75;
+                height: auto;
+                /* width: 40vw ; */
+                border-left: 1px solid rgba(0, 0, 0, 0.2);
+                transform: translate(100%, 0);
+                transition: transform .3s;
+            }
+
+            .email-preview{
+                display:flex;
+                flex-direction: column;
+                           }
+               .mobile-prev{
+                   display:flex;
+                   justify-content: space-between;
+                   width: 100%
+               }            
+            }
+               
+        
 
 /* helpers */
 .flex{

@@ -12,5 +12,13 @@ window.vueApp = new Vue({
     components: {
         mainApp
     },
-    
+    data: {
+        isOpen:false
+    },
+
+    methods: {
+        openMenu(){
+            this.isOpen=!this.isOpen;
+        }
+    }
 })

@@ -27,14 +27,14 @@ export default {
             </div> 
             <div class="right flex column">
            
-            <div class="flex search-area"> 
-                <email-filter @filtered="setFilter"></email-filter>  
-            </div>
-            <router-link  exact to="/email/email-list"></router-link> 
-            <router-view 
-                :filtered="emailsToShow"
-                @deleted="getEmails">
-            </router-view> 
+                <div class="flex search-area"> 
+                    <email-filter @filtered="setFilter"></email-filter>  
+                </div>
+                <router-link  exact to="/email/email-list"></router-link> 
+                <router-view 
+                    :filtered="emailsToShow"
+                    @deleted="getEmails">
+                </router-view> 
             </div>  
             
             <compose-email  v-if="showComposeEmail" class="compose-email-open compose-email"
