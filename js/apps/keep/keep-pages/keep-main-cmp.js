@@ -36,11 +36,13 @@ export default {
 
 
                 <div class="edit-new-note flex" v-if="isAddingNote">
-                    <i class="fas fa-align-left icon"></i>     <!-- default- input text -->
-                    <i class="fas fa-thumbtack icon" @click="onPinNote()"></i>      <!--  pinned note -->
-                    <i class="fas fa-palette icon" @click="onChangeColor()"></i>        <!--  input color -->
-                    <i class="far fa-images icon" @click="onAddImage()"></i>         <!--  input image -->
-                    <i class="fas fa-link icon" @click="onAddLink()"></i>
+                    <i class="fas fa-align-left"></i>     <!-- default- input text -->
+                    <i class="fas fa-thumbtack" @click="onPinNote()"></i>      <!--  pinned note -->
+                    <i class="fas fa-palette" @click="onChangeColor()"></i>        <!--  input color -->
+                    <i class="far fa-images" @click="onAddImage()"></i>         <!--  input image -->
+                    <!-- <i class="fas fa-list-ul"></i>        -->
+                    <!-- <i class="far fa-file-audio"></i>     -->
+                    <i class="fas fa-link" @click="onAddLink()"></i>
                 </div>
 
                 <color-note v-if="isChooseColor" @emitColor="getColor($event)">
@@ -62,9 +64,8 @@ export default {
 
             <!-- render notes -->
             <!-- TODO: dynamic components -->
-            <div class="flex column" >
-                <span class="pinned-other">Pinned:</span>              
-                <div class="notes-grid flex column-reverse">                  
+            <div class="notes-grid flex column" >
+                <div class="notes-grid flex column-reverse"> 
                     <note-preview v-for="note in notes"  
                         :key="note.id" 
                         v-if="note.isPinned"
@@ -76,7 +77,6 @@ export default {
                     </note-preview>  
                 </div>
                 <hr />
-                <span class="pinned-other">Other:</span>
                 <div class="notes-grid flex column-reverse">             
                     <note-preview v-for="note in notes"  
                         :key="note.id" 

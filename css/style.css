@@ -36,27 +36,16 @@ input{
 }
 
 /* KEEP */
-.main-keep{
-    width: 90%;
-    margin: 0 auto;
-    color: #4a4c50
-}
-
 .keep-form{
     margin:  20px auto;
     max-width: 650px;
-    border: 1px solid #979797;
+    border: 1px solid #a9a9a9;
     border-radius: 4px;
 }
 
 .input-add-note, .input-add-note-title, .input-add-link, .input-add-image{
     padding: 10px;
     border: 0;
-}
-
-.pinned-other{
-    font-weight: 800;
-    margin-left: 10px;
 }
 
 .color{
@@ -88,13 +77,8 @@ input{
     padding: 10px 0;
 }
 
-.icon{
+.far, .fas{
     margin: 0 10px;
-}
-
-.icon:hover{
-    color: #7e99a5;
-    transition: 0.3sec;
 }
 
 .save-note button{
@@ -128,18 +112,21 @@ h2{
     margin: 0;
 }
     
-.keep-notes-preview{
-    border: 1px solid #98999b;
-    padding: 5px;
+.note-preview{
+    border: 1px solid #dadce0;
+    padding: 3px;
     margin: 5px auto;
     color: #202124;
     border-radius: 4px;
+<<<<<<< HEAD
     width: 100%;
 }
 
 .keep-notes-preview:hover{
     background-color: #7e99a5;
     transition: 0.3s;
+=======
+>>>>>>> a500ab2638f83c668677783fa30f5855684e0bec
 }
 
 .fa-trash-alt{
@@ -155,50 +142,30 @@ h2{
     color: #767676;
 }
 
+<<<<<<< HEAD
 .button-cancel, .button-add{
     font-size: 1.2em;
 }
 
 
 /* Email */
+=======
+>>>>>>> a500ab2638f83c668677783fa30f5855684e0bec
 ul{
     list-style-type: none;
-    padding: 0;
-    margin: 15px;
-    /* border-top-left-radius: 3px; */
-    border-radius: 5px;
-}
-
-li{
-    padding: 0 10px;
-    
-}
-
-li:hover{
-    background-color: #7e99a5;
-    transition: 0.3s;
-}
-
-.email-list{
-    width: 100%;
 }
 
 .right, .left{
     border: 1px solid black;
-
 }
 
 .left{
     padding: 0;
     width: 25%;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
 }
 
 .right{
     width:100%;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
 }
 
 .compose{
@@ -223,7 +190,7 @@ li:hover{
 
 .search-area{
     padding-left: 40px;
-    margin: 30px auto;
+    margin: 10px auto;
     /* width: 100%; */
 }
 
@@ -243,10 +210,10 @@ li:hover{
 }
 
 .delete-email{
-    width:5%;
-    text-align: center;
-    margin: 0;
-    padding: 2px;
+    /* width:5%; */
+    text-align:left;
+    
+
 }
 
 .mark-as-unred{
@@ -298,6 +265,79 @@ li:hover{
 .background-dark{
     background-color: #c2d3da;
 }
+
+.mobile-menu-button {
+    display: none;
+    /* position: absolute;
+    left: 0;
+    top: 0; */
+    }
+@media (max-width: 600px) {
+    .nav-bar {
+        height: 80px;
+        top: 0;
+        position: flex;
+        align-items: center;
+         }
+         .mobile-menu-button {
+            display: block;
+            position: absolute;
+            right: 0;
+             }
+
+             .nav-list {
+                z-index: 1;
+                position: fixed;
+                right: 0; 
+                top: 80px; 
+                flex-direction: column;
+                background-color: #00293c;
+                opacity: 0.75;
+                height: auto;
+                /* width: 40vw ; */
+                border-left: 1px solid rgba(0, 0, 0, 0.2);
+                transform: translate(100%, 0);
+                transition: transform .3s;
+            }
+        
+             .nav-list-open{   
+                transform: translate(0, 0);
+            }
+        
+            .nav-list a {
+                width: 130px;
+                height: 130px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .left{
+                z-index: 1;
+                position: fixed;
+                right: 0; 
+                top: 80px; 
+                flex-direction: column;
+                background-color: #00293c;
+                opacity: 0.75;
+                height: auto;
+                /* width: 40vw ; */
+                border-left: 1px solid rgba(0, 0, 0, 0.2);
+                transform: translate(100%, 0);
+                transition: transform .3s;
+            }
+
+            .email-preview{
+                display:flex;
+                flex-direction: column;
+                           }
+               .mobile-prev{
+                   display:flex;
+                   justify-content: space-between;
+                   width: 100%
+               }            
+            }
+               
+        
 
 /* helpers */
 .flex{

@@ -15,11 +15,12 @@
         
         <div class="nav-bar flex justify-between">
             <router-link class="router-link" to="/" exact>Appsus</router-link>
-            <div class="router-link">
+            <div class="router-link nav-list" :class="[isOpen ? 'nav-list-open': '' ]">
                 <router-link class="router-link" to="/" exact>Main</router-link> | 
                 <router-link class="router-link" to="/email">Email</router-link> |
                 <router-link class="router-link" to="/keep">Keep</router-link>
             </div>
+            <button id="mobile-menu-button"  class="mobile-menu-button" @click="openMenu()">☰</button>
         </div>
 
 
