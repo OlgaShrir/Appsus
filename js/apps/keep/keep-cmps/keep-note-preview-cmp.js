@@ -11,8 +11,8 @@ export default {
         <section class="keep-notes-preview">
             <div class="'note-preview' flex column 'justify-between'" :style="bcg">
                 <div class="icons">
-                    <i class="icon" @click.stop="onDeleteNote()" class="fas fa-trash-alt"></i>
-                    <i class="icon" v-if="note.isPinned" class="fas fa-thumbtack"></i>
+                    <i @click.stop="onDeleteNote()" class="fas fa-trash-alt icon"></i>
+                    <i v-if="note.isPinned" class="fas fa-thumbtack icon"></i>
                 </div>
                 
                 <span class="note-title">{{note.noteTitle}}</span>
