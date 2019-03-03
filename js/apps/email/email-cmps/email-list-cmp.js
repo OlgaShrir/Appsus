@@ -19,9 +19,7 @@ export default {
                         :idx="idx"
                         @click.native="openEmail(currEmail.id)"  >
                         </email-preview>
-                        <router-view></router-view>
-                
-                  
+                        <router-view ></router-view>                
                 </li>
                 
             </ul>
@@ -51,6 +49,7 @@ export default {
        // console.log('test')
      },
      deleteEmail(email){  
+        // console.log('test')
        emailService.deleteEmail(email.id);
        emailService.getEmailsForDisplay().then(emails => {
          //console.log(emails)
