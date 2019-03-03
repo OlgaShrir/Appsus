@@ -36,11 +36,11 @@ export default {
 
 
                 <div class="edit-new-note flex" v-if="isAddingNote">
-                    <i class="fas fa-align-left"></i>     <!-- default- input text -->
-                    <i class="fas fa-thumbtack" @click="onPinNote()"></i>      <!--  pinned note -->
-                    <i class="fas fa-palette" @click="onChangeColor()"></i>        <!--  input color -->
-                    <i class="far fa-images" @click="onAddImage()"></i>         <!--  input image -->
-                    <i class="fas fa-link" @click="onAddLink()"></i>
+                    <i class="fas fa-align-left icon"></i>     <!-- default- input text -->
+                    <i class="fas fa-thumbtack icon" @click="onPinNote()"></i>      <!--  pinned note -->
+                    <i class="fas fa-palette icon" @click="onChangeColor()"></i>        <!--  input color -->
+                    <i class="far fa-images icon" @click="onAddImage()"></i>         <!--  input image -->
+                    <i class="fas fa-link icon" @click="onAddLink()"></i>
                 </div>
 
                 <color-note v-if="isChooseColor" @emitColor="getColor($event)">

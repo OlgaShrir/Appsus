@@ -88,8 +88,13 @@ input{
     padding: 10px 0;
 }
 
-.far, .fas{
+.icon{
     margin: 0 10px;
+}
+
+.icon:hover{
+    color: #7e99a5;
+    transition: 0.3sec;
 }
 
 .save-note button{
