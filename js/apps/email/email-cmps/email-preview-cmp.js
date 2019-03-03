@@ -3,10 +3,10 @@
 export default {
     props: ['email', 'idx'],
     template: `
-       <li @click.stop.prevent="markAsRead(email)" class="email-preview flex align-center justify-between cursor" :class="[email.isRead ? 'background-dark' : 'background-light' ]">
-      
+       <li @click.stop.prevent="markAsRead(email)" class="email-preview flex align-center justify-between cursor" :class="[email.isRead ? 'background-dark' : 'background-light' ]">      
           <h3>{{email.from}}</h3>
           <div class="email-subj">{{email.subject}}</div>
+<<<<<<< HEAD
           <div class="mobile-prev flex ">
              <div class="email-body">{{email.sentAt}} </div>
              <div class="mobile-buttons flex" >
@@ -14,6 +14,12 @@ export default {
                 <button class="mark-as-unread fas fa-envelope-square"  @click.stop.prevent="markAsUnread(email)"></button>
           </div>
         </div>
+=======
+          <div class="email-body">{{email.sentAt}} </div>
+
+          <button class="delete-email fas fa-trash-alt" @click.stop.prevent="deleteEmail(email,idx)"> </button>
+          <button class="mark-as-unread fas fa-envelope-square"  @click.stop.prevent="markAsUnread(email)"></button>
+>>>>>>> 38cec8d586ba6a8cfa55a5361e239ee9ed92420d
       </li>
   `,
 
@@ -27,7 +33,6 @@ export default {
         markAsUnread(email){
             this.$emit('markAsUnread', email)  
         }
-
     },
 
     computed: {

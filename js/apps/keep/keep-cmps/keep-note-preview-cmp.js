@@ -10,8 +10,11 @@ export default {
     template: `
         <section class="keep-notes-preview">
             <div class="'note-preview' flex column 'justify-between'" :style="bcg">
-                <i @click.stop="onDeleteNote()" class="fas fa-trash-alt"></i>
-                <i v-if="note.isPinned" class="fas fa-thumbtack"></i>
+                <div class="icons">
+                    <i class="icon" @click.stop="onDeleteNote()" class="fas fa-trash-alt"></i>
+                    <i class="icon" v-if="note.isPinned" class="fas fa-thumbtack"></i>
+                </div>
+                
                 <span class="note-title">{{note.noteTitle}}</span>
                 <span @keyup="restrictNoteLength()" class="note-txt">{{moreThan200}}</span>
                 <span v-if="more200" class="read-more">Read more...</span>
