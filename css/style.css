@@ -3,8 +3,12 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
+}
+
+.router-link{
+    text-decoration: none;
 }
 
 input{
@@ -25,10 +29,22 @@ input{
     border: 1px solid #a9a9a9;
     border-radius: 4px;
 }
-.input-add-note, .input-add-note-title{
+.input-add-note, .input-add-note-title, .input-add-link, .input-add-image{
     padding: 10px;
     border: 0;
 }
+
+.color{
+    width: 30px;
+    
+
+}
+
+
+/* doesn't work!!
+.color-input, .color-button{
+    display: inline-block;
+} */
 
 .open-note{
     max-width: 650px;
@@ -36,7 +52,6 @@ input{
     border: 1px solid #a9a9a9;
     padding: 10px;
     color: #767676;
-
 }
 
 .textarea-open{
@@ -209,6 +224,9 @@ ul{
 }
 .justify-center{
     justify-content: center;
+}
+.justify-end{
+    justify-content: flex-end;
 }
 .justify-between{
     justify-content: space-between;
