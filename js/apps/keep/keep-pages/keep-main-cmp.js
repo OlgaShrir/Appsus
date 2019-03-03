@@ -1,12 +1,14 @@
 import keepService from '../keep-services/keep-service.js'
 import notePreview from '../keep-cmps/keep-note-preview-cmp.js'
 import openNote from '../keep-cmps/keep-open-note-cmp.js'
+import colorNote from '../keep-cmps/keep-color-cmp.js'
 
 export default {
     components: {
         notePreview,
-        openNote
-    }, 
+        openNote,
+        colorNote
+    },
     template: `
        <section class="main-keep">
 
@@ -18,18 +20,25 @@ export default {
                         class="input-add-note" type="text" placeholder="What's on your mind" style="" />
                <div class="edit-new-note flex" v-if="isAddingNote">
                     <!-- TODO: colors, type, img, todos -->
-                    <i class="fas fa-align-left"></i>   
-                    <i class="fas fa-palette"></i>
-                    <i class="far fa-images"></i>
-                    <i class="fas fa-list-ul"></i>
-                    <i class="far fa-file-audio"></i>
+                    <!-- <input type="image"> -->
+                    <i class="fas fa-align-left"></i>     <!-- default- input text -->
+                    <i class="fas fa-palette" @click="onChangeColor()"></i>        <!--  input color -->
+                    <i class="far fa-images"></i>         <!--  input image -->
+                    <i class="fas fa-list-ul"></i>        <!--  input todo -->
+                    <i class="far fa-file-audio"></i>     <!--  input audio -->
                     <i class="fas fa-link"></i>
-               </div>
-               <div class="save-note">
+                </div>
+
+                <color-note v-if="isChooseColor" @emitColor="getColor($event)">
+                </color-note>
+
+                <div class="save-note">
                    <button @click="onAddNewNote()">Add Note</button>
                    <button @click="emptyNewNote()">Delete Note</button>
-               </div>
+                </div>
             </form>
+            
+<!-- </form> -->
 
             <!-- preview note for edit or full view -->
             <!-- TODO: new component -->
@@ -39,10 +48,12 @@ export default {
                 <!-- <button @click=onSaveEdit(currNote) class="save-note">Save</button> -->
             </div>
 
+
             <!-- render notes -->
+            <!-- dynamic components -->
             <div class="notes-grid flex column-reverse" >
                 <note-preview v-for="note in notes"  :key="note.id" 
-                    @delete="onDeleteNote(note)" :note="note" @click.native="updateCurr(note)">
+                    @delete="onDeleteNote(note)" :note="note" @click.native="updateCurr(note)" :color="newNote.color">
                 </note-preview>              
             </div>
             <div>
@@ -51,7 +62,7 @@ export default {
        </section>
     `,
 
-// @open="openNote()"
+    // @open="openNote()"
     data() {
         return {
             isAddingNote: false,
@@ -61,57 +72,60 @@ export default {
                 noteTitle: '',
                 isPinned: false,
                 createTime: null,
-                backGroundColor: null,
-                type: null    //note, video, audio, todo
-            }, 
+                type: null,   //note, video, audio, todo
+                color: null
+            },
             notes: null,
             isNoteOpen: false,
             currNote: null,
-            editedNote: null
-        } 
+            editedNote: null,
+            isChooseColor: false
+        }
     },
-    methods:{
-        updateCurr(note){     
+    methods: {
+        updateCurr(note) {
             this.currNote = note;
             this.isNoteOpen = true;
         },
-        onAddNewNote(){
-            if(!this.newNote.note && !this.newNote.noteTitle) return
-            
-            // console.log('this.newNote',this.newNote)
-            // // this.newNote.id = keepService.updateId() // Cannot set property 'id' of null"
+        onAddNewNote() {
+            if (!this.newNote.note && !this.newNote.noteTitle) return
+            console.log('this.newNote',this.newNote)
             keepService.addNewNote(this.newNote)
-            .then (notes => this.notes = notes)
+                .then(notes => this.notes = notes)
             this.isAddingNote = false
-            
-            // console.log(this.id)
-            // console.log(this.note)
             this.emptyNewNote()
         },
-        emptyNewNote(){
-                        this.newNote = {
-                            id: null,
-                            note: '',
-                            noteTitle: '',
-                            isPinned: false,
-                            createTime: null,
-                            backGroundColor: null,
-                            type: null    //note, video, audio, todo
-                        }
-                        this.isAddingNote = false
+        emptyNewNote() {
+            this.newNote = {
+                id: null,
+                note: '',
+                noteTitle: '',
+                isPinned: false,
+                createTime: null,
+                type: null,    //note, video, audio, todo
+                color: null
+            }
+            this.isAddingNote = false
         },
-        onDeleteNote(note){
+        onDeleteNote(note) {
             this.notes = keepService.deleteNote(note);
         },
-        onSaveEdit(currNote){
+        onSaveEdit(currNote) {
             // console.log(currNote)
             keepService.saveEdit(currNote)
         },
-        setFocus(){
+        setFocus() {
             this.$refs.noteinput.focus();
+        },
+        onChangeColor() {
+            this.isChooseColor = !this.isChooseColor
+        },
+        getColor(color) {
+            this.newNote.color = color
+            console.log(this.newNote.color)
         }
     },
-    created(){
+    created() {
         this.notes = keepService.getStoragedNotes();
         // console.log(this.notes)
     },

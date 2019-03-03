@@ -8,7 +8,9 @@ export default {
     },
     template: `
         <section class="keep-notes-preview">
-            <div class="note-preview flex column justify-between" @click="onOpenNote()" >
+            <div v-bind:style="bcg"
+                class="'note-preview' flex column 'justify-between'" 
+                @click="onOpenNote()" >
                 <i @click.stop="onDeleteNote()" class="fas fa-trash-alt"></i>
                 <span class="note-title">{{note.noteTitle}}</span>
                 <span @keyup="restrictNoteLength()" class="note-txt">{{renderingNote}}</span>
@@ -20,6 +22,10 @@ export default {
         return {
             renderingNote: '',
             more200: false,
+            isChooseColor: false,
+            bcg: {
+                backgroundColor: ''
+            },
         }
     },
     created() {
@@ -34,6 +40,11 @@ export default {
         } else {
             this.renderingNote = note;
         }
+
+        if(this.note.color){
+            this.isChooseColor = !this.isChooseColor
+        } 
+        this.bcg.backgroundColor = this.note.color;
     },
     methods: {
         onDeleteNote() {
@@ -41,7 +52,8 @@ export default {
         },
         onOpenNote(){
             this.$emit('open', this.note)
-        }
+        },
+
     },
 }
 

@@ -34,6 +34,21 @@ input{
     border: 0;
 }
 
+.color{
+    width: 30px;
+    
+
+}
+
+.bcg{
+    background-color: #c717becc;
+}
+
+/* doesn't work!!
+.color-input, .color-button{
+    display: inline-block;
+} */
+
 .open-note{
     max-width: 650px;
     margin: 20px auto;
