@@ -32,6 +32,7 @@ function getRandomColor() {
     return JSON.parse(str)
  }
 
+
  function timeConverter(timestamp){
      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
    var year = timestamp.getFullYear();
@@ -43,3 +44,13 @@ function getRandomColor() {
    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
    return time;
  }
+//  function getTodayFormatted() {
+//    var d = new Date(),
+//        month = '' + (d.getMonth() + 1),
+//        day = '' + d.getDate(),
+//        year = d.getFullYear();
+
+//    if (month.length < 2) month = '0' + month;
+//    if (day.length < 2) day = '0' + day;
+//    return [year, month, day].join('-');
+// }

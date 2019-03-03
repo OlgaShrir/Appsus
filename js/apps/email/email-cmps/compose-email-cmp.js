@@ -8,7 +8,7 @@ export default {
         <h2>New message</h2>
         <div class="compose-heder-close flex">
           <i class="fas fa-expand-arrows-alt"></i>
-          <i class="fas fa-times"></i>
+          <div class="fas fa-times "@click="onCloseCompose"  ></div>
         </div>
       </div>
      <input type="text" autofocus v-model="email.sentTo" placeholder="to"/>
@@ -34,8 +34,11 @@ export default {
     onSave() {
       emailService.saveNewEmail(this.email.subject, this.email.body, this.email.sentFrom, this.email.sentTo );
       this.$emit('closeComposeEmail');
-     
-  },
+       },
+       onCloseCompose(){
+        this.$emit('closeComposeEmail');
+
+       }
   },
   
   components: {

@@ -1,31 +1,75 @@
 
 import emailPreview from './email-preview-cmp.js'
+import emailService from '../email-services/email-service.js';
 
 
 export default {
+    props:['filtered'],
     template: `
         <section class="email-list">
+        
             <ul>
-                <li :key="currEmail.id" 
-                    v-for="(currEmail, idx) in emails">
-                    <router-link
-                    :to="'/email/' + currEmail.id ">
+                    <li v-for="(currEmail, idx) in filtered">
+                             
                         <email-preview 
-                            :email="currEmail"  >
+                        @readEmail="readEmail"
+                          @deleteEmail="deleteEmail"
+                          @markAsUnread="markAsUnread"   
+                        :email="currEmail" 
+                        :idx="idx"
+                        @click.native="openEmail(currEmail.id)"  >
                         </email-preview>
-                    </router-link>
+                        <router-view></router-view>
+                
                   
                 </li>
                 
             </ul>
         </section>
     `,
-    props: ['emails'],
-    methods: {
-      // selectEmail(email){
-      //   this.$emit('selected',email)
+
+    data() {
+        return {
+            emails: []
+        }},
+
+    
+    created() {
+        console.log('I was created')
+    emailService.getEmailsForDisplay()
+            //console.log('test', emailService.getEmailsForDisplay())
+            .then(emails => this.emails = emails)
     },
     
+    methods: {
+        openEmail(id) {
+            this.$router.push('/email/open-email/' + id);
+        },
+     readEmail(email){
+        emailService.updateAsRead(email.id);
+        this.emails=emailService.getEmailsForDisplay(); 
+       // console.log('test')
+     },
+     deleteEmail(email){  
+       emailService.deleteEmail(email.id);
+       emailService.getEmailsForDisplay().then(emails => {
+         //console.log(emails)
+         this.emails = emails;
+        }); 
+        this.$emit('deleted', email);
+    //    this .$router.push('/email/email-list')
+
+     },
+     markAsUnread(email){
+        emailService.updateAsUnread(email.id);
+        this.emails=emailService.getEmailsForDisplay(); 
+     }
+    },
+    computed: {
+        emailsToShow(){
+         emailService.getEmailsForDisplay().then(emails => this.emails = emails); 
+        }
+    },
     components: {
         emailPreview
     }

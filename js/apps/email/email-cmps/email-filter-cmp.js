@@ -2,8 +2,8 @@ import {eventBus, EVENT_INBOX} from '../../../services/eventbus-service.js';
 
 export default {
   template: `
-      <section class="search-email">
-       <button class="search-img" @click="emitFilter" v-model="filterBy.subject"></button>
+      <section class="search-email flex">
+       <button class="search-img" @click="emitFilter"></button>
           <input type="text" placeholder="search email" @keyup.enter="emitFilter" v-model="filterBy.subject" /> 
       </section> 
   `,
@@ -17,7 +17,7 @@ export default {
   methods: {
       emitFilter() {
           console.log('Emitting to Parent');
-          this.$emit('filtered', {...this.filterBy})
+          this.$emit('filtered', this.filterBy.subject)
       }
   },
   created() {

@@ -38,7 +38,7 @@ function createEmail(subject, body, from, to = null) {
 		subject: subject,
 		body: body,
 		isRead: false,
-		sentAt: new Date(),//.toLocaleDateString(),
+		sentAt: new Date().toLocaleDateString(),
 		from: from,
 		to: to,
 		isStared: false
@@ -46,12 +46,8 @@ function createEmail(subject, body, from, to = null) {
 }
 
 function getEmailsForDisplay() {
-	console.log(gEmails);
+	console.log( 'getemails', gEmails);
 	return Promise.resolve(gEmails);
-	// if (gMemesFilterBy === 'All') return gImages;
-	// return gImages.filter(function (meme) {
-	//     if (meme.keywords.find(function (word) { return word === gMemesFilterBy })) return meme;
-	// })
 }
 
 function allEmails() {
@@ -72,8 +68,51 @@ function saveNewEmail(subject, body, from, to) {
 	utilService.saveToStorage(EMAILS_KEY, gEmails);
 }
 
+function updateAsRead(id){
+	console.log('read true')
+	getEmailById(id)
+	.then (email=> email.isRead=true)
+	.then (()=>utilService.saveToStorage(EMAILS_KEY, gEmails))
+	
+
+}
+ function updateAsUnread(id){
+	 console.log('read false')
+	 getEmailById(id)
+	 .then (email=> email.isRead=false)
+	 .then (()=>utilService.saveToStorage(EMAILS_KEY, gEmails))
+	 
+ }
+
+ function deleteEmail(id){
+	 console.log('delete')
+	 var indx = gEmails.findIndex(function (email) {
+		return email.id === id
+	 })
+	gEmails.splice(indx, 1);
+	utilService.saveToStorage(EMAILS_KEY, gEmails);
+ }
+
+ function getReadEmails(){
+	 var readEmails=gEmails.filter(function (email) {
+		return email.isRead===true});
+		console.log ('read',readEmails);
+		return readEmails;
+	 }
+
+	 function getUnReadEmails(){
+		var readEmails=gEmails.filter(function (email) {
+		 return email.isRead===false})
+		}
+
+
 export default {
 	getEmailsForDisplay,
 	getEmailById,
-	saveNewEmail
+	saveNewEmail,
+	updateAsUnread,
+	updateAsRead,
+	deleteEmail,
+	getReadEmails,
+	getUnReadEmails
 }

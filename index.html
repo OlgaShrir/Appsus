@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +8,27 @@
     <title>Appsus</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div id="app">
-        
-        <div class="nav-bar flex justify-between">
+        <div class="nav-bar flex justify-between ">
             <router-link to="/" exact>Appsus</router-link>
             <div class="router-link">
-                <router-link to="/" exact>Main</router-link> | 
+                <router-link to="/" exact>Main</router-link> |
                 <router-link to="/email">Email</router-link> |
                 <router-link to="/keep">Keep</router-link>
             </div>
         </div>
-            
-        <!-- <main-app></main-app> -->
+
 
         <router-view></router-view>
     </div>
 
     <script src="lib/vue.js"></script>
     <script src="lib/vue-router.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script type="module" src="js/main.js"></script>
 </body>
+
 </html>
