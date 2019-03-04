@@ -239,17 +239,17 @@ li:hover{
 }
 
 .delete-email{
-    width: 5%;
+    /* width: 5%; */
     text-align: center;
     margin: 0;  
-    padding: 2px;
+    /* padding: 2px; */
 }
 
-.mark-as-unred{
-    width:5%;
+.mark-as-unread{
+    /* width:5%; */
     text-align: center;
     margin: 0;
-    padding: 2px;
+    /* padding: 2px; */
 }
 
 .compose-email{
